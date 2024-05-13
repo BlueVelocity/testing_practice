@@ -1,4 +1,4 @@
-import { capitalize, reverseString, calculator } from "./script.js";
+import { capitalize, reverseString, calculator, caesarCipher } from "./script.js";
 
 //capitalize funtion tests
 test("capitalize() output string is capitalized", () => {
@@ -92,3 +92,11 @@ test("calculator functions only accept numbers", () => {
   expect( () => calculator.divide("6", "12")).toThrow(Error);
 })
 
+test("ceaserCipher() codes string", () => {
+  const testCases = [
+    {case: ["hello", 4], result: "LHOOR"}
+  ];
+  testCases.forEach( (testCase) => {
+    expect(caeserCipher(testCase.case[0], testCase.case[1])).toBe(testCase.result)
+  })
+})
