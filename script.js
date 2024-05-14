@@ -39,9 +39,31 @@ const calculator = {
   }
 }
 
-function caeserCipher(string, cipherKey) {
-  const alphabet = [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z];
-  let
+function caesarCipher(string, cipherKey) {
+  if (string === undefined || cipherKey === undefined) throw new Error("Invalid Input: Missing argument");
+  if (typeof string !== "string") throw new Error("Invalid Input: First argument requires a string");
+  if (typeof cipherKey !== "number") throw new Error("Invalid Input: Second argument requires a number");
+  if (string.length === 0) throw new Error("Invalid Input: Empty string");
+
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+  const shift = cipherKey % 26;
+  let codedString = "";
+
+  for (let i = 0; i < string.length; i++) {
+
+    if (string[i] === " ") {
+      codedString += " ";
+      continue;
+    }
+
+    const currentLetterIndex = alphabet.indexOf(string[i].toUpperCase());
+    const codedLetterIndex = currentLetterIndex + shift;
+    const codedLetter = codedLetterIndex > 26 ? alphabet[(codedLetterIndex) - 26] : alphabet[codedLetterIndex];
+    
+    codedString += codedLetter;
+  }
+  return codedString;
 }
 
-export { capitalize, reverseString, calculator, caeserCipher };
+export { capitalize, reverseString, calculator, caesarCipher };

@@ -92,11 +92,33 @@ test("calculator functions only accept numbers", () => {
   expect( () => calculator.divide("6", "12")).toThrow(Error);
 })
 
-test("ceaserCipher() codes string", () => {
+test("caesarCipher() codes string", () => {
   const testCases = [
-    {case: ["hello", 4], result: "LHOOR"}
+    {case: ["hello", 4], result: "LIPPS"},
+    {case: ["crankedhog", 7], result: "JYHURLKOVN"},
   ];
   testCases.forEach( (testCase) => {
-    expect(caeserCipher(testCase.case[0], testCase.case[1])).toBe(testCase.result)
+    expect(caesarCipher(testCase.case[0], testCase.case[1])).toBe(testCase.result)
   })
+})
+
+test("caesarCipher() codes string with spaces", () => {
+  expect(caesarCipher("hello world", 7)).toBe("OLSSV DVYSK"); 
+})
+
+test("caesarCipher() throws error on missing argument", () => {
+  expect( () => caesarCipher("hello")).toThrow("Invalid Input: Missing argument");
+  expect( () => caesarCipher(undefined, 7)).toThrow("Invalid Input: Missing argument");
+  expect( () => caesarCipher(undefined, undefined)).toThrow("Invalid Input: Missing argument");
+})
+
+test("caesarCipher() throws error on empty string", () => {
+  expect( () => caesarCipher("", 4)).toThrow("Invalid Input: Empty string");
+})
+
+test("caesarCipher() throws error on invalid input types", () => {
+  expect( () => caesarCipher(null, 7)).toThrow("Invalid Input: First argument requires a string");
+  expect( () => caesarCipher(5, 7)).toThrow("Invalid Input: First argument requires a string");
+  expect( () => caesarCipher("hello", null)).toThrow("Invalid Input: Second argument requires a number");
+  expect( () => caesarCipher("hello", "hello")).toThrow("Invalid Input: Second argument requires a number");
 })
