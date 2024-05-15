@@ -75,4 +75,13 @@ function caesarCipher(string, cipherKey) {
   return codedString;
 }
 
-export { capitalize, reverseString, calculator, caesarCipher };
+function analyzeArray(arr) {
+  return {
+    average: arr.reduce( (acc, input) => (acc + input)) / arr.length,
+    min: arr.reduce( (acc, input) => acc > input ? input : acc),
+    max: arr.reduce( (acc, input) => acc < input ? input : acc),
+    length: arr.length
+  }
+}
+
+export { capitalize, reverseString, calculator, caesarCipher, analyzeArray };

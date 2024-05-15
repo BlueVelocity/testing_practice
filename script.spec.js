@@ -1,4 +1,4 @@
-import { capitalize, reverseString, calculator, caesarCipher } from "./script.js";
+import { capitalize, reverseString, calculator, caesarCipher, analyzeArray } from "./script.js";
 
 //capitalize funtion tests
 test("capitalize() output string is capitalized", () => {
@@ -134,4 +134,27 @@ test("caesarCipher() allows punctuation", () => {
 test("caesarCipher() maintains case", () => {
   expect(caesarCipher("hElLo", 4)).toBe("lIpPs");
   expect(caesarCipher("crANkedHOG", 7)).toBe("jyHUrlkOVN");
+})
+
+test("analyzeArray() returns object with average, min, max, and length", () => {
+  expect(analyzeArray([1, 2, 3]).average).toBeTruthy();
+  expect(analyzeArray([1, 2, 3]).min).toBeTruthy();
+  expect(analyzeArray([1, 2, 3]).max).toBeTruthy();
+  expect(analyzeArray([1, 2, 3]).length).toBeTruthy();
+})
+
+test("analyzeArray() returns correct average", () => {
+  expect(analyzeArray([1, 2, 3, 4, 5]).average).toBe(3);
+})
+
+test("analyzeArray() returns correct min", () => {
+  expect(analyzeArray([1, 8, 3, 2, 5]).min).toBe(1);
+})
+
+test("analyzeArray() returns correct max", () => {
+  expect(analyzeArray([1, 8, 3, 2, 5]).max).toBe(8);
+})
+
+test("analyzeArray() returns correct length", () => {
+  expect(analyzeArray([1, 8, 3, 2, 5]).length).toBe(5);
 })
