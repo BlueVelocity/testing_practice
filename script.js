@@ -51,9 +51,13 @@ function caesarCipher(string, cipherKey) {
   let codedString = "";
 
   for (let i = 0; i < string.length; i++) {
-
     if (string[i] === " ") {
       codedString += " ";
+      continue;
+    }
+
+    if (!alphabet.includes(string[i].toUpperCase())) {
+      codedString += string[i];
       continue;
     }
 
@@ -61,8 +65,13 @@ function caesarCipher(string, cipherKey) {
     const codedLetterIndex = currentLetterIndex + shift;
     const codedLetter = codedLetterIndex > 26 ? alphabet[(codedLetterIndex) - 26] : alphabet[codedLetterIndex];
     
-    codedString += codedLetter;
+    if (string[i] === string[i].toUpperCase()) {
+      codedString += codedLetter;
+    } else {
+      codedString += codedLetter.toLowerCase();
+    }
   }
+
   return codedString;
 }
 

@@ -94,20 +94,24 @@ test("calculator functions only accept numbers", () => {
 
 test("caesarCipher() codes string", () => {
   const testCases = [
-    {case: ["hello", 4], result: "LIPPS"},
-    {case: ["crankedhog", 7], result: "JYHURLKOVN"},
+    {case: ["HELLO", 4], result: "LIPPS"},
+    {case: ["CRANKEDHOG", 7], result: "JYHURLKOVN"},
   ];
   testCases.forEach( (testCase) => {
     expect(caesarCipher(testCase.case[0], testCase.case[1])).toBe(testCase.result)
   })
 })
 
+test("caesarCipher() wraps from z to a", () => {
+  expect(caesarCipher("XYLOPHONE", 4)).toBe("BCPSTLSRI");
+})
+
 test("caesarCipher() codes string with spaces", () => {
-  expect(caesarCipher("hello world", 7)).toBe("OLSSV DVYSK"); 
+  expect(caesarCipher("HELLO WORLD", 7)).toBe("OLSSV DVYSK"); 
 })
 
 test("caesarCipher() throws error on missing argument", () => {
-  expect( () => caesarCipher("hello")).toThrow("Invalid Input: Missing argument");
+  expect( () => caesarCipher("HELLO")).toThrow("Invalid Input: Missing argument");
   expect( () => caesarCipher(undefined, 7)).toThrow("Invalid Input: Missing argument");
   expect( () => caesarCipher(undefined, undefined)).toThrow("Invalid Input: Missing argument");
 })
@@ -119,6 +123,15 @@ test("caesarCipher() throws error on empty string", () => {
 test("caesarCipher() throws error on invalid input types", () => {
   expect( () => caesarCipher(null, 7)).toThrow("Invalid Input: First argument requires a string");
   expect( () => caesarCipher(5, 7)).toThrow("Invalid Input: First argument requires a string");
-  expect( () => caesarCipher("hello", null)).toThrow("Invalid Input: Second argument requires a number");
-  expect( () => caesarCipher("hello", "hello")).toThrow("Invalid Input: Second argument requires a number");
+  expect( () => caesarCipher("HELLO", null)).toThrow("Invalid Input: Second argument requires a number");
+  expect( () => caesarCipher("HELLO", "HELLO")).toThrow("Invalid Input: Second argument requires a number");
+})
+
+test("caesarCipher() allows punctuation", () => {
+  expect(caesarCipher("NEEDN'T", 4)).toBe("RIIHR'X");
+})
+
+test("caesarCipher() maintains case", () => {
+  expect(caesarCipher("hElLo", 4)).toBe("lIpPs");
+  expect(caesarCipher("crANkedHOG", 7)).toBe("jyHUrlkOVN");
 })
