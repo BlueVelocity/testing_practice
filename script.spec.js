@@ -145,16 +145,33 @@ test("analyzeArray() returns object with average, min, max, and length", () => {
 
 test("analyzeArray() returns correct average", () => {
   expect(analyzeArray([1, 2, 3, 4, 5]).average).toBe(3);
+  expect(analyzeArray([1, 8, 3, 4, 2, 6]).average).toBe(4);
 })
 
 test("analyzeArray() returns correct min", () => {
   expect(analyzeArray([1, 8, 3, 2, 5]).min).toBe(1);
+  expect(analyzeArray([1, 8, 3, 4, 2, 6]).min).toBe(1);
 })
 
 test("analyzeArray() returns correct max", () => {
   expect(analyzeArray([1, 8, 3, 2, 5]).max).toBe(8);
+  expect(analyzeArray([1, 8, 3, 4, 2, 6]).max).toBe(8);
 })
 
 test("analyzeArray() returns correct length", () => {
   expect(analyzeArray([1, 8, 3, 2, 5]).length).toBe(5);
+  expect(analyzeArray([1, 8, 3, 4, 2, 6]).length).toBe(6);
+})
+
+test("analyzeArray() throws error on invalid input", () => {
+  expect( () => analyzeArray(null)).toThrow("Invalid Input: Requires array of numbers");
+  expect( () => analyzeArray("hello")).toThrow("Invalid Input: Requires array of numbers");
+})
+
+test("analyzeArray() throws error on empty array", () => {
+  expect( () => analyzeArray([])).toThrow("Invalid Input: Empty Array");
+})
+
+test("analyzeArray() throws error when array is not exclusively numbers", () => {
+  expect( () => analyzeArray([1, 2, "e"])).toThrow("Invalid Input: Requires array of numbers");
 })
