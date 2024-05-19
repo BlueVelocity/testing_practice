@@ -76,6 +76,13 @@ function caesarCipher(string, cipherKey) {
 }
 
 function analyzeArray(arr) {
+  if (!Array.isArray(arr)) throw new Error("Invalid Input: Requires array of numbers");
+  if (arr.length === 0) throw new Error("Invalid Input: Empty Array");
+
+  arr.forEach( item => {
+    if(typeof item !== "number") throw new Error("Invalid Input: Requires array of numbers")
+  });
+
   return {
     average: arr.reduce( (acc, input) => (acc + input)) / arr.length,
     min: arr.reduce( (acc, input) => acc > input ? input : acc),
