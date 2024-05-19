@@ -2,9 +2,10 @@
   "name": "testing_practice",
   "version": "1.0.0",
   "description": "Testing practice: Design a basic program to manipulate strings, numbers, and arrays using Test Driven Design",
-  "main": "index.js",
+  "main": "script.js",
+  "type": "module",
   "scripts": {
-    "test": "jest",
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
     "test-watch": "jest --watch"
   },
   "keywords": [],
